@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Final Conversion Results</title>
+   <link rel="stylesheet" type="text/css" href="/view.css">
+   <style>
+      .green {
+        color: green;
+      }
+      .yellow {
+        color: yellow;
+      }
+      .red {
+        color: red;
+      }
+   </style>
+</head>
+<body>
+   <h1>Final Conversion Results</h1>
+   
+   <% if (results.length === 0) { %>
+    <p>No saved results available.</p>
+    <% } else { %>
+        <!-- <div><%= results %></div> -->
+        <table class="tabili">
+            <% results.forEach((item) => { %>
+                    <h1>Title: <%= item.selectedCurrency %></h1>
+                    <tr>
+                        <!-- <th>Converted Amount</th> -->
+                        <th>Currency</th>
+                        <th>Converted Results</th>
+                        <th>Converted to NGN</th>
+                        <th>Profit</th>
+                    </tr>
+                    <% Object.keys(item.results).forEach((currency) => { %>
+                        <% const profit = parseFloat(item.profit); %>
+                        <tr>
+                            <td><%= currency %></td>
+                            <td><%= item.results[currency] %></td>
+                            <td><%= item.convertedToNairaResults[currency] %></td>
+                            <td><%= item.profit[currency] %></td>
+                        </tr>
+                <% }); %>
+            <% }); %>
+        </table>
+        <!-- <table class="tabili">
+            <h1>Title: <%= results.selectedCurrency %></h1>
+            <h2><%= results.nairaAmount %></h2>
+            <tr>
+                <th>Amount in Selected Currency</th>
+                <th>Currency</th>
+                <th>Converted Amount in each currency</th>
+                <th>Converted Amount in (NGN)</th>
+                <th>Profit</th>
+            </tr>
+            <% results.forEach(result => { %>
+                <tr>
+                    <td><%= result.convertedAmount %></td>
+                    <td><%= result.currency %></td>
+                    <td><%= result.results[result.currency] %></td>
+                    <td><%= result.convertedToNairaResults[result.currency] %></td>
+                    <% if (result.profit[result.currency] > 0.00) { %>
+                        <td class="green"><%= result.profit[result.currency] %></td>
+                    <% } else if (result.profit[result.currency] === 0.00) { %>
+                        <td class="yellow"><%= result.profit[result.currency] %></td>
+                    <% } else { %>
+                        <td class="red"><%= result.profit[result.currency] %></td>
+                    <% } %>
+                </tr>
+            <% }); %>
+        </table> -->
+        
+    <% } %>
+
+
+
+   <div class="use">
+    <form action="/user/dashboard/clearresults" method="post">
+      <button class="btn1" type="submit">Clear Results</button>
+    </form>
+  </div>
+
+  <br>
+
+  <div>
+    <p class="btn"><a href="/user/dashboard">Return to Dashboard</a></p>
+  </div>
+</body>
+
+<!-- <script>
+
+    console.log(results)
+</script> -->
+</html>
+
+
