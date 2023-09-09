@@ -143,7 +143,7 @@ router.post('/dashboard/finalconvert', async (req, res) => {
       await conversionResult.save();
 
       // Render the view with all data
-      res.render('finalresult', {
+      res.render('finalResult', {
         selectedCurrency,
         convertedAmount,
         customConversionRate,
